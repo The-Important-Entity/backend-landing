@@ -7,7 +7,7 @@ class Requester {
         this.auth = auth;
     }
 
-    login (username, password) {
+    async login (username, password) {
         try {
             const response = await axios.post(this.auth + "/login", {
                 "username": username,
@@ -23,7 +23,7 @@ class Requester {
         }
     }
 
-    authorize (token) {
+    async authorize (token) {
         try {
             const response = await axios.post(this.auth + "/token", {
                 "token": token
