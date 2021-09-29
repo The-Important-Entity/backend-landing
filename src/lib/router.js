@@ -8,6 +8,9 @@ class Router {
         this.app = express();
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
+
+        var cors = require('cors');
+        this.app.use(cors());
         this.port = config.PORT;
         this.requester = new Requester(config.DB_SERVICE, config.AUTH_SERVICE);
 
@@ -20,10 +23,6 @@ class Router {
             sameSite: 'strict'
         }
 
-        // this.app.get("/security_groups", [
-        //     this.auth.bind(this),
-        //     this.getSecurityGroups.bind(this)
-        // ]);
 
         this.app.post("/api/login", login.bind(this));
         this.app.get("/*", this.getFrontend.bind(this));
@@ -32,7 +31,7 @@ class Router {
     }
 
     getFrontend(req, res) {
-
+        res.send("Serving Frontend");
     }
     
     start() {
@@ -49,7 +48,6 @@ class Router {
     stop(){
         try {
             this.server.close();
-            this.dbconn.close();
         }
         catch(err) {
             throw err;
