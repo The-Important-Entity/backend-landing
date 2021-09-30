@@ -2,6 +2,7 @@
 const express = require("express");
 const login = require("./routes/login");
 const Requester = require("./requester");
+const path = require("path");
 
 class Router {
     constructor(config) {
@@ -11,6 +12,8 @@ class Router {
 
         var cors = require('cors');
         this.app.use(cors());
+        this.app.use(express.static('public'));
+        
         this.port = config.PORT;
         this.requester = new Requester(config.DB_SERVICE, config.AUTH_SERVICE);
 
@@ -31,7 +34,7 @@ class Router {
     }
 
     getFrontend(req, res) {
-        res.send("Serving Frontend");
+        res.sendFile(path.join(__dirname, "../../", "/public/index.html"));
     }
     
     start() {
