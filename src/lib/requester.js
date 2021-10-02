@@ -88,7 +88,7 @@ class Requester {
 
     async getAccessKeys(org_id) {
         try {
-            const response = await axios.get(this.dbservice + "/access_keys/" + org.toString());
+            const response = await axios.get(this.dbservice + "/access_keys?org_id=" + org_id.toString());
 
             return response.data;
         }
