@@ -6,6 +6,7 @@ const path = require("path");
 const authorize = require("./utils/authorize");
 const getSecurityGroups = require("./routes/getSecurityGroups");
 const getSecurityPerms = require("./routes/getSecurityPerms");
+const cookieParser = require('cookie-parser');
 
 class Router {
     constructor(config) {
@@ -16,6 +17,7 @@ class Router {
         var cors = require('cors');
         this.app.use(cors());
         this.app.use(express.static('public'));
+        this.app.use(cookiesParser());
         
         this.port = config.PORT;
         this.requester = new Requester(config.DB_SERVICE, config.AUTH_SERVICE);
