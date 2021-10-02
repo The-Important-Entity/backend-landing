@@ -3,6 +3,9 @@ const express = require("express");
 const login = require("./routes/login");
 const Requester = require("./requester");
 const path = require("path");
+const authorize = require("./utils/authorize");
+const getSecurityGroups = require("./routes/getSecurityGroups");
+const getSecurityPerms = require("./routes/getSecurityPerms");
 
 class Router {
     constructor(config) {
@@ -28,6 +31,17 @@ class Router {
 
 
         this.app.post("/api/login", login.bind(this));
+
+        this.app.get('/api/security_groups', [
+            authorize.bind(this),
+            getSecurityGroups.bind(this)
+        ]);
+        this.app.get('/api/security_perms', [
+            authorize.bind(this),
+            getSecurityPerms.bind(this)
+        ]);
+
+
         this.app.get("/*", this.getFrontend.bind(this));
 
         this.test_appid = new RegExp('^[A-Z0-9]{50,}$')
