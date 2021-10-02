@@ -5,12 +5,11 @@ module.exports = async function(req, res, next) {
         return;
     }
     const response = await this.requester.authorize(token);
-
-    if (response.error = "Unauthorized") {
+    if (response.error == "Unauthorized") {
         res.status(400).send({"error": "Unauthorized"});
         return;
     }
 
-    req.locals.user = response;
+    res.locals.user = response;
     next();
 }

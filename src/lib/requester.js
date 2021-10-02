@@ -38,6 +38,29 @@ class Requester {
             }
         }
     }
+
+    async getOrganization(organization) {
+        try {
+            const response = await axios.get(this.dbservice + "/organization/" + organization);
+
+            return response.data;
+        }
+
+        catch(err) {
+            return [];
+        }
+    }
+    async getSecurityGroups(org_id) {
+        try {
+            const response = await axios.get(this.dbservice + "/security_group/" + org_id.toString());
+
+            return response.data;
+        }
+
+        catch(err) {
+            return [];
+        }
+    }
 }
 
 module.exports = Requester;
