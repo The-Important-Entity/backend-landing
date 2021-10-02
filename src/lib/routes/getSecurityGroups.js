@@ -8,5 +8,5 @@ module.exports = async function(req, res) {
     }
     const org_id = orgs[0].id;
     const groups = await this.requester.getSecurityGroups(org_id);
-    res.send(groups);
+    res.status(200).send(groups);
 }

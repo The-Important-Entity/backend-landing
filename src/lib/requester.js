@@ -61,6 +61,18 @@ class Requester {
             return [];
         }
     }
+
+    async getSecurityPerms(group_id) {
+        try {
+            const response = await axios.get(this.dbservice + "/security_perm/" + org_id.toString());
+
+            return response.data;
+        }
+
+        catch(err) {
+            return [];
+        }
+    }
 }
 
 module.exports = Requester;
