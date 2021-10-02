@@ -17,7 +17,7 @@ class Router {
         var cors = require('cors');
         this.app.use(cors());
         this.app.use(express.static('public'));
-        this.app.use(cookiesParser());
+        this.app.use(cookieParser());
         
         this.port = config.PORT;
         this.requester = new Requester(config.DB_SERVICE, config.AUTH_SERVICE);
