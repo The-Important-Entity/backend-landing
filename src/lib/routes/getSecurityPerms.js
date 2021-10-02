@@ -1,5 +1,5 @@
 module.exports = async function(req, res) {
-    const group_id = req.params.group_id;
+    const group_id = req.query.group_id;
     if (!group_id) {
         res.status(400).send({"error": "Missing group id"});
         return;

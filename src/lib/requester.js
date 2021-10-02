@@ -64,7 +64,31 @@ class Requester {
 
     async getSecurityPerms(group_id) {
         try {
-            const response = await axios.get(this.dbservice + "/security_perm/" + org_id.toString());
+            const response = await axios.get(this.dbservice + "/security_perm/" + group_id.toString());
+
+            return response.data;
+        }
+
+        catch(err) {
+            return [];
+        }
+    }
+
+    async getNamespaces(org) {
+        try {
+            const response = await axios.get(this.dbservice + "/namespace/" + org.toString());
+
+            return response.data;
+        }
+
+        catch(err) {
+            return [];
+        }
+    }
+
+    async getAccessKeys(org_id) {
+        try {
+            const response = await axios.get(this.dbservice + "/access_keys/" + org.toString());
 
             return response.data;
         }

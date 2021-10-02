@@ -6,6 +6,8 @@ const path = require("path");
 const authorize = require("./utils/authorize");
 const getSecurityGroups = require("./routes/getSecurityGroups");
 const getSecurityPerms = require("./routes/getSecurityPerms");
+const getNamespaces = require("./routes/getNamespaces");
+const getAccessKeys = require("./routes/getAceessKeys");
 const cookieParser = require('cookie-parser');
 
 class Router {
@@ -40,6 +42,14 @@ class Router {
         this.app.get('/security_perms', [
             authorize.bind(this),
             getSecurityPerms.bind(this)
+        ]);
+        this.app.get('/namespaces', [
+            authorize.bind(this),
+            getNamespaces.bind(this)
+        ]);
+        this.app.get('/access_keys', [
+            authorize.bind(this),
+            getAccessKeys.bind(this)
         ]);
 
         this.test_appid = new RegExp('^[A-Z0-9]{50,}$')
