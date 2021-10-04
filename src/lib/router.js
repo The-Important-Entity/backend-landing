@@ -7,7 +7,7 @@ const authorize = require("./utils/authorize");
 const getSecurityGroups = require("./routes/getSecurityGroups");
 const getSecurityPerms = require("./routes/getSecurityPerms");
 const getNamespaces = require("./routes/getNamespaces");
-const getAccessKeys = require("./routes/getAceessKeys");
+const getAccessKeys = require("./routes/getAccessKeys");
 const cookieParser = require('cookie-parser');
 
 class Router {
